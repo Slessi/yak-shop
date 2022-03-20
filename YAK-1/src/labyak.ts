@@ -1,5 +1,5 @@
 export interface LabYak {
   name: string;
   age: number;
-  sex: string;
+  sex: "f" | "m";
 }
