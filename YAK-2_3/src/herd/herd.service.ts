@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { round } from 'src/round';
 
 export interface LabYak {
   name: string;
@@ -8,17 +9,17 @@ export interface LabYak {
 
 export interface LabYakResult extends LabYak {
   milk: number;
-  wool: number;
+  skins: number;
   ageLastShaved: number;
 }
 
 @Injectable()
-export class AppService {
-  public calculate(totalDays: number) {
+export class HerdService {
+  public getHerd(totalDays: number) {
     const results = this.getData().map<LabYakResult>((l) => ({
       ...l,
       milk: 0,
-      wool: 0,
+      skins: 0,
       ageLastShaved: 0,
     }));
 
@@ -30,8 +31,7 @@ export class AppService {
         const D = result.age * 100;
 
         // A LabYak dies the day he turns 10.
-        // Using .toFixed to prevent floating point errors
-        if (result.age.toFixed(2) === '10.00') {
+        if (result.age === 10) {
           return;
         }
 
@@ -39,17 +39,20 @@ export class AppService {
         result.milk += 50 - D * 0.03;
 
         if (this.canShaveLabYak(result, currentDay)) {
-          result.wool += 1;
+          result.skins += 1;
           result.ageLastShaved = result.age;
         }
 
-        result.age += 0.01;
+        result.age = round(result.age + 0.01);
       });
 
       currentDay++;
     }
 
-    return results;
+    return results.map((r) => ({
+      ...r,
+      milk: round(r.milk),
+    }));
   }
 
   private canShaveLabYak(

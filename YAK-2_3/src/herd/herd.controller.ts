@@ -1,19 +1,19 @@
 import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
-import { AppService } from 'src/app.service';
+import { HerdService } from './herd.service';
 
 @Controller('herd')
 export class HerdController {
-  constructor(private appService: AppService) {}
+  constructor(private herdService: HerdService) {}
 
   @Get(':T')
   getHerd(@Param('T', ParseIntPipe) T: number) {
-    const data = this.appService.calculate(T);
+    const data = this.herdService.getHerd(T);
 
     return {
       herd: data.map((d) => ({
         name: d.name,
-        age: Number(d.age.toFixed(2)),
-        'age-last-shaved': Number(d.ageLastShaved.toFixed(2)),
+        age: d.age,
+        'age-last-shaved': d.ageLastShaved,
       })),
     };
   }

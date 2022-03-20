@@ -6,7 +6,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 
-class OrderDto {
+export class OrderDto {
   @IsNumber()
   @IsNotEmpty()
   milk!: number;
