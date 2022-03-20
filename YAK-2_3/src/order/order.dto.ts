@@ -14,12 +14,10 @@ export enum OrderStatus {
 
 export class OrderDto {
   @IsNumber()
-  @IsNotEmpty()
-  milk!: number;
+  milk?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  skins!: number;
+  skins?: number;
 }
 
 export class CreateOrderDto {

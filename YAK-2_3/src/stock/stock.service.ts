@@ -10,19 +10,16 @@ export interface Stock {
 
 @Injectable()
 export class StockService {
-  private stock?: Stock;
   private reservedStock: Stock = { milk: 0, skins: 0 };
 
   constructor(private herdService: HerdService) {}
 
   public getStock(totalDays: number): Stock {
-    if (!this.stock) {
-      this.stock = this.createStock(totalDays);
-    }
+    const stock = this.createStock(totalDays);
 
     return {
-      milk: round(this.stock.milk - this.reservedStock.milk),
-      skins: round(this.stock.skins - this.reservedStock.skins),
+      milk: round(stock.milk - this.reservedStock.milk),
+      skins: round(stock.skins - this.reservedStock.skins),
     };
   }
 
@@ -35,12 +32,12 @@ export class StockService {
 
     const reservedStock: Partial<Stock> = {};
 
-    if (milkRequested <= milkAvailable) {
+    if (milkRequested && milkRequested <= milkAvailable) {
       reservedStock.milk = milkRequested;
       this.reservedStock.milk = round(this.reservedStock.milk + milkRequested);
     }
 
-    if (skinsRequested <= skinsAvailable) {
+    if (skinsRequested && skinsRequested <= skinsAvailable) {
       reservedStock.skins = skinsRequested;
       this.reservedStock.skins = this.reservedStock.skins + skinsRequested;
     }

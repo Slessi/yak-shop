@@ -23,7 +23,10 @@ export class OrderService {
 
     let status: OrderStatus;
 
-    if (reservedStock.milk && reservedStock.skins) {
+    if (
+      reservedStock.milk === order.milk &&
+      reservedStock.skins === order.skins
+    ) {
       status = OrderStatus.FULLY_COMPLETE;
     } else if (!reservedStock.milk && !reservedStock.skins) {
       status = OrderStatus.IMPOSSIBLE;

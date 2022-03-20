@@ -7,6 +7,7 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe());
   app.setGlobalPrefix('yak-shop');
+  app.enableCors();
 
   await app.listen(3000);
 }
