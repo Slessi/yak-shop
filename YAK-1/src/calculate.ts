@@ -1,26 +1,18 @@
-import { LabYak } from "./labyak";
+import type { LabYak } from "./labyak";
 
-interface LabYakResult {
-  name: string;
-  age: number;
+export interface LabYakResult extends LabYak {
   milk: number;
   wool: number;
-  lastShave: number;
+  ageLastShaved: number;
 }
 
 export function calculate(labyaks: LabYak[], totalDays: number) {
-  const results = new Map<number, LabYakResult>(
-    labyaks.map((l, i) => [
-      i,
-      {
-        name: l.name,
-        age: l.age,
-        milk: 0,
-        wool: 0,
-        lastShave: 0,
-      },
-    ])
-  );
+  const results = labyaks.map<LabYakResult>((l) => ({
+    ...l,
+    milk: 0,
+    wool: 0,
+    ageLastShaved: 0,
+  }));
 
   let currentDay = 0;
 
@@ -40,7 +32,7 @@ export function calculate(labyaks: LabYak[], totalDays: number) {
 
       if (canShaveLabYak(result, currentDay)) {
         result.wool += 1;
-        result.lastShave = currentDay;
+        result.ageLastShaved = result.age;
       }
 
       result.age += 0.01;
@@ -52,7 +44,10 @@ export function calculate(labyaks: LabYak[], totalDays: number) {
   return results;
 }
 
-function canShaveLabYak({ age, lastShave }: LabYakResult, currentDay: number) {
+function canShaveLabYak(
+  { age, ageLastShaved }: LabYakResult,
+  currentDay: number
+) {
   // A yak can be first shaven when he is 1 year.
   if (age < 1) {
     return false;
@@ -64,5 +59,5 @@ function canShaveLabYak({ age, lastShave }: LabYakResult, currentDay: number) {
   }
 
   // At most every 8+age (D*0.01) days you can again shave a LabYak
-  return currentDay - lastShave > 8 + age;
+  return (age - ageLastShaved) * 100 > 8 + age;
 }

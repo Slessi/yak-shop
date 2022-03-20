@@ -1,8 +1,6 @@
-import type { calculate } from "./calculate";
+import type { LabYakResult } from "./calculate";
 
-export function generateOutput(resultMap: ReturnType<typeof calculate>) {
-  const results = Array.from(resultMap.values());
-
+export function generateOutput(results: LabYakResult[]) {
   const stock = results.reduce(
     (prev, result) => {
       prev.milk += result.milk;
