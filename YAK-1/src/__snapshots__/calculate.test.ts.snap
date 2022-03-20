@@ -1,79 +1,88 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`calculate calculates expected values 1`] = `
-Map {
-  0 => Object {
+Array [
+  Object {
     "age": 4.129999999999997,
-    "lastShave": 0,
+    "ageLastShaved": 4,
     "milk": 491.66,
     "name": "Betty-1",
+    "sex": "f",
     "wool": 1,
   },
-  1 => Object {
+  Object {
     "age": 8.129999999999997,
-    "lastShave": 0,
+    "ageLastShaved": 8,
     "milk": 335.65999999999997,
     "name": "Betty-2",
+    "sex": "f",
     "wool": 1,
   },
-  2 => Object {
+  Object {
     "age": 9.629999999999997,
-    "lastShave": 0,
+    "ageLastShaved": 9.5,
     "milk": 277.16,
     "name": "Betty-3",
+    "sex": "f",
     "wool": 1,
   },
-}
+]
 `;
 
 exports[`calculate calculates expected values 2`] = `
-Map {
-  0 => Object {
+Array [
+  Object {
     "age": 4.139999999999997,
-    "lastShave": 13,
+    "ageLastShaved": 4.129999999999997,
     "milk": 529.27,
     "name": "Betty-1",
+    "sex": "f",
     "wool": 2,
   },
-  1 => Object {
+  Object {
     "age": 8.139999999999997,
-    "lastShave": 0,
+    "ageLastShaved": 8,
     "milk": 361.27,
     "name": "Betty-2",
+    "sex": "f",
     "wool": 1,
   },
-  2 => Object {
+  Object {
     "age": 9.639999999999997,
-    "lastShave": 0,
+    "ageLastShaved": 9.5,
     "milk": 298.27000000000004,
     "name": "Betty-3",
+    "sex": "f",
     "wool": 1,
   },
-}
+]
 `;
 
 exports[`calculate calculates expected values 3`] = `
-Map {
-  0 => Object {
+Array [
+  Object {
     "age": 5.999999999999957,
-    "lastShave": 189,
+    "ageLastShaved": 5.88999999999996,
     "milk": 7003.000000000014,
     "name": "Betty-1",
+    "sex": "f",
     "wool": 15,
   },
-  1 => Object {
+  Object {
     "age": 9.999999999999957,
-    "lastShave": 193,
+    "ageLastShaved": 9.929999999999959,
     "milk": 4603.000000000013,
     "name": "Betty-2",
+    "sex": "f",
     "wool": 12,
   },
-  2 => Object {
+  Object {
     "age": 9.99999999999999,
-    "lastShave": 36,
+    "ageLastShaved": 9.859999999999992,
     "milk": 1038.2500000000007,
     "name": "Betty-3",
+    "sex": "f",
     "wool": 3,
   },
-}
+]
 `;

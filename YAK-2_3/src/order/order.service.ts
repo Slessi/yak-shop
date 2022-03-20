@@ -1,12 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { StockService } from 'src/stock/stock.service';
-import { OrderDto } from './order.dto';
-
-export enum OrderStatus {
-  FULLY_COMPLETE,
-  PARTIALLY_COMPLETE,
-  IMPOSSIBLE,
-}
+import { OrderDto, OrderStatus } from './order.dto';
 
 @Injectable()
 export class OrderService {
@@ -29,10 +23,7 @@ export class OrderService {
 
     let status: OrderStatus;
 
-    if (
-      reservedStock.milk === order.milk &&
-      reservedStock.skins === order.skins
-    ) {
+    if (reservedStock.milk && reservedStock.skins) {
       status = OrderStatus.FULLY_COMPLETE;
     } else if (!reservedStock.milk && !reservedStock.skins) {
       status = OrderStatus.IMPOSSIBLE;

@@ -7,15 +7,15 @@ import {
   Res,
 } from '@nestjs/common';
 import { Response } from 'express';
-import { CreateOrderDto } from './order.dto';
-import { OrderService, OrderStatus } from './order.service';
+import { CreateOrderDto, OrderStatus } from './order.dto';
+import { OrderService } from './order.service';
 
 @Controller('order')
 export class OrderController {
   constructor(private orderService: OrderService) {}
 
   @Post(':T')
-  postOrder(
+  createOrder(
     @Res({ passthrough: true }) res: Response,
     @Param('T', ParseIntPipe) T: number,
     @Body() { order }: CreateOrderDto,

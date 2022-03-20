@@ -33,16 +33,19 @@ export class StockService {
     const { milk: milkAvailable, skins: skinsAvailable } =
       this.getStock(totalDays);
 
-    const milkToReserve = Math.min(milkRequested, milkAvailable);
-    const skinToReserve = Math.min(skinsRequested, skinsAvailable);
+    const reservedStock: Partial<Stock> = {};
 
-    this.reservedStock.milk = round(this.reservedStock.milk + milkToReserve);
-    this.reservedStock.skins = round(this.reservedStock.skins + skinToReserve);
+    if (milkRequested <= milkAvailable) {
+      reservedStock.milk = milkRequested;
+      this.reservedStock.milk = round(this.reservedStock.milk + milkRequested);
+    }
 
-    return {
-      milk: milkToReserve,
-      skins: skinToReserve,
-    };
+    if (skinsRequested <= skinsAvailable) {
+      reservedStock.skins = skinsRequested;
+      this.reservedStock.skins = this.reservedStock.skins + skinsRequested;
+    }
+
+    return reservedStock;
   }
 
   private createStock(totalDays: number) {

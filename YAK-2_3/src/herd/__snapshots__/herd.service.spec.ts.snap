@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HerdService 0 - calculates expected values for 13 days 1`] = `
+Array [
+  Object {
+    "age": 4.13,
+    "ageLastShaved": 4,
+    "milk": 491.66,
+    "name": "Betty-1",
+    "sex": "f",
+    "skins": 1,
+  },
+  Object {
+    "age": 8.13,
+    "ageLastShaved": 8,
+    "milk": 335.66,
+    "name": "Betty-2",
+    "sex": "f",
+    "skins": 1,
+  },
+  Object {
+    "age": 9.63,
+    "ageLastShaved": 9.5,
+    "milk": 277.16,
+    "name": "Betty-3",
+    "sex": "f",
+    "skins": 1,
+  },
+]
+`;
+
+exports[`HerdService 1 - calculates expected values for 14 days 1`] = `
+Array [
+  Object {
+    "age": 4.14,
+    "ageLastShaved": 4.13,
+    "milk": 529.27,
+    "name": "Betty-1",
+    "sex": "f",
+    "skins": 2,
+  },
+  Object {
+    "age": 8.14,
+    "ageLastShaved": 8,
+    "milk": 361.27,
+    "name": "Betty-2",
+    "sex": "f",
+    "skins": 1,
+  },
+  Object {
+    "age": 9.64,
+    "ageLastShaved": 9.5,
+    "milk": 298.27,
+    "name": "Betty-3",
+    "sex": "f",
+    "skins": 1,
+  },
+]
+`;
+
+exports[`HerdService 2 - calculates expected values for 200 days 1`] = `
+Array [
+  Object {
+    "age": 6,
+    "ageLastShaved": 5.89,
+    "milk": 7003,
+    "name": "Betty-1",
+    "sex": "f",
+    "skins": 15,
+  },
+  Object {
+    "age": 10,
+    "ageLastShaved": 9.93,
+    "milk": 4603,
+    "name": "Betty-2",
+    "sex": "f",
+    "skins": 12,
+  },
+  Object {
+    "age": 10,
+    "ageLastShaved": 9.86,
+    "milk": 1038.25,
+    "name": "Betty-3",
+    "sex": "f",
+    "skins": 3,
+  },
+]
+`;

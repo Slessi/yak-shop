@@ -6,6 +6,12 @@ import {
   ValidateNested,
 } from 'class-validator';
 
+export enum OrderStatus {
+  FULLY_COMPLETE,
+  PARTIALLY_COMPLETE,
+  IMPOSSIBLE,
+}
+
 export class OrderDto {
   @IsNumber()
   @IsNotEmpty()
