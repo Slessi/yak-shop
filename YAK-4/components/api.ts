@@ -1,7 +1,13 @@
 const apiUrl = "http://localhost:3000/yak-shop";
 
-async function api<T>(path: string, options?: RequestInit) {
-  const data = await fetch(`${apiUrl}/${path}`, options);
+async function api<T>(path: string, options: RequestInit = {}) {
+  const data = await fetch(`${apiUrl}/${path}`, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
 
   const json = await data.json();
 
@@ -41,8 +47,13 @@ export interface Order {
   };
 }
 
+export interface OrderResponse {
+  milk?: number;
+  skins?: number;
+}
+
 export function placeOrder(T: number, order: Order) {
-  return api(`order/${T}`, {
+  return api<OrderResponse>(`order/${T}`, {
     method: "POST",
     body: JSON.stringify(order),
   });

@@ -9,7 +9,8 @@ import { Stock } from "./Stock";
 export interface QueryFormProps extends BoxProps {}
 
 export const QueryForm: React.FC<QueryFormProps> = ({ ...props }) => {
-  const [days, setDays] = React.useState(14);
+  const defaultDays = 14;
+  const [days, setDays] = React.useState(defaultDays);
   const { data: herd, error: herdError } = useQuery(`herd-${days}`, () =>
     getHerd(days)
   );
@@ -22,20 +23,20 @@ export const QueryForm: React.FC<QueryFormProps> = ({ ...props }) => {
       <TextField
         label="Days to calculate"
         inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-        value={days}
+        defaultValue={defaultDays}
         onChange={(e) => setDays(Number(e.currentTarget.value))}
         sx={{ mb: 2 }}
       />
 
       {herdError && (
         <Typography color="error">
-          Herd: {(herdError as Error)?.message}
+          Herd error: {(herdError as Error)?.message}
         </Typography>
       )}
 
       {stockError && (
         <Typography color="error">
-          Stock {(stockError as Error)?.message}
+          Stock error: {(stockError as Error)?.message}
         </Typography>
       )}
 

@@ -10,7 +10,14 @@ const Home: NextPage = () => (
       Yak shop
     </Typography>
 
-    <Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        gap: 2,
+      }}
+    >
       <QueryForm sx={{ flex: 1, flexBasis: 300 }} />
       <OrderForm sx={{ flex: 1, flexBasis: 300 }} />
     </Box>
