@@ -1,4 +1,5 @@
-import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
+import { DaysParams } from 'src/common/DaysParams';
 import { HerdService } from './herd.service';
 
 @Controller('herd')
@@ -6,7 +7,7 @@ export class HerdController {
   constructor(private herdService: HerdService) {}
 
   @Get(':T')
-  getHerd(@Param('T', ParseIntPipe) T: number) {
+  getHerd(@Param() { T }: DaysParams) {
     const data = this.herdService.getHerd(T);
 
     return {

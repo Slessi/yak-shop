@@ -1,12 +1,6 @@
-import {
-  Body,
-  Controller,
-  Param,
-  ParseIntPipe,
-  Post,
-  Res,
-} from '@nestjs/common';
+import { Body, Controller, Param, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
+import { DaysParams } from 'src/common/DaysParams';
 import { CreateOrderDto, OrderStatus } from './order.dto';
 import { OrderService } from './order.service';
 
@@ -17,7 +11,7 @@ export class OrderController {
   @Post(':T')
   createOrder(
     @Res({ passthrough: true }) res: Response,
-    @Param('T', ParseIntPipe) T: number,
+    @Param() { T }: DaysParams,
     @Body() { order }: CreateOrderDto,
   ) {
     const { status, reservedStock } = this.orderService.handleOrder(T, order);
