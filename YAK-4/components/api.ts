@@ -1,17 +1,36 @@
 const apiUrl = "http://localhost:3000/yak-shop";
 
-async function api(path: string, options?: RequestInit) {
+async function api<T>(path: string, options?: RequestInit) {
   const data = await fetch(`${apiUrl}/${path}`, options);
 
-  return data.json();
+  const json = await data.json();
+
+  if (data.status >= 400) {
+    throw new Error(json.message?.join("\n"));
+  }
+
+  return json as T;
+}
+
+export interface HerdResponse {
+  herd: {
+    name: string;
+    age: number;
+    "age-last-shaved": number;
+  }[];
 }
 
 export function getHerd(T: number) {
-  return api(`herd/${T}`);
+  return api<HerdResponse>(`herd/${T}`);
+}
+
+export interface StockResponse {
+  milk: number;
+  skins: number;
 }
 
 export function getStock(T: number) {
-  return api(`stock/${T}`);
+  return api<StockResponse>(`stock/${T}`);
 }
 
 export interface Order {
